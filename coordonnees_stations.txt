@@ -1,92 +1,14 @@
-msysgit
-git config --global user.name "salau0042"
-git config --global user.email "aurelie.salaun@etudiant.univ-nancy2.fr"
-git add
-git commit
-git push
-git fetch
-
-MacAurelie:Metro Aurelie$ /usr/local/git/bin/git add README
-MacAurelie:Metro Aurelie$ /usr/local/git/bin/git commit -m"test aurelie"
-MacAurelie:Metro Aurelie$ /usr/local/git/bin/git push origin master
-MacAurelie:Metro Aurelie$ /usr/local/git/bin/git pull origin master
-
-site github.org
-
-Séance 1
-
-Etape 1
-Présents: Romain Bouquet / Aurélie Salaün / Pierre Zemb
-Absent : Fabien L'honneur
-Date : 04/04/2011
-
-Compréhension du sujet
-Définition des classes principales
-Ligne
-Troncon
-Station
-Trajet
-
-Codage des classes principales --> Romain
-
-Maillage du réseau permettant de répondre à tous les cas de figures à partir du plan du métro parisien --> Pierre et Aurélie (papier puis java)
-
-Ligne 1
-Coordonnee coorPorteDeLaChapelle = new Coordonnee (, )
-Station porteDeLaChapelle = new Station ("Porte de la Chapelle", 40, coorPorteDeLaChapelle)
-Troncon tron1 = new Troncon (1, "Porte de la Chapelle", "Marx Dormoy", 40)
-
-Coordonnee coorMarxDormoy = new Coordonnee (, )
-Station marxDormoy = new Station ("Marx Dormoy", 40, coorMarxDormoy)
-Troncon tron2 = new Troncon (2, "Marx Dormoy", "Jules Joffrin", 40)
-
-Coordonnee coorJulesJoffrin = new Coordonnee (, )
-Station julesJoffrin = new Station ("Jules Joffrin", 40, coorJulesJoffrin)
-Troncon tron3 = new Troncon (3, "Jules Joffrin", "Abbesses", 40)
-
-Coordonnee coorAbbesses = new Coordonnee (, )
-Station abbesses = new Station ("Abbesses", 40, coorAbbesses)
-Troncon tron4 = new Troncon (4, "Abbesses", "Pigalle", 40)
-
-Coordonnee coorPigalle = new Coordonnee (, )
-Station pigalle = new Station ("Pigalle", 40, coorPigalle)
-Troncon tron5 = new Troncon (5, "Pigalle", "Saint-Georges", 40)
-
-Coordonnee coorSaintGeorges = new Coordonnee (, )
-Station saintGeorges = new Station ("Saint-Georges", 40, coorSaintGeorges)
-Troncon tron6 = new Troncon (6, "Saint-Georges", "Saint-Lazare", 40)
-
-Coordonnee coorSaintLazare = new Coordonnee (, )
-Station saintLazare = new Station ("Saint-Lazare", 40, coorSaintLazare)
-Troncon tron7 = new Troncon (7, "Saint-Lazare", "Madeleine", 40)
-
-Coordonnee coorMadeleine = new Coordonnee (, )
-Station madeleine = new Station ("Madeleine", 40, coorMadeleine)
-Troncon tron8 = new Troncon (8, "Madeleine", "Concorde", 40)
-
-Coordonnee coorConcorde = new Coordonnee (, )
-Station concorde = new Station ("Concorde", 40, coorConcorde)
-Troncon tron9 = new Troncon (9, "Concorde", "Assemblee Nationale", 40)
-
-Coordonnee coorAssembleeNationale = new Coordonnee (, )
-Station assembleeNationale = new Station ("Assemblee Nationale", 40, coorAssembleeNationale)
-Troncon tron10 = new Troncon (10, "Assemblee Nationale", "Rennes", 40)
-
-Coordonnee coorRennes = new Coordonnee (, )
-Station rennes = new Station ("Rennes", 40, coorRennes)
-//Troncon tronc11 = new Troncon (11, "Rennes", "Montparnasse Bienvenue", 40)
-------------------------------------------------------------------------
 Coordonnee coorUnA = new Coordonnee (50,0)
 Station unA = new Station ("UnA", 40, coorUnA)
-Troncon tron1 = new Troncon (1, "UnA", "UnB", 40)
+Troncon tron1 = new Troncon (1, "UnA", "UnB", 20)
 
 Coordonnee coorUnB = new Coordonnee (50,25)
 Station unB = new Station ("UnB", 40, coorUnB)
-Troncon tron2 = new Troncon (2, "UnB", "UnC", 40)
+Troncon tron2 = new Troncon (2, "UnB", "UnC", 30)
 
 Coordonnee coorUnC = new Coordonnee (50,50)
 Station unC = new Station ("UnC", 40, coorUnC)
-Troncon tron3 = new Troncon (3, "UnC", "UnD", 40)
+Troncon tron3 = new Troncon (3, "UnC", "UnD", 30)
 
 Coordonnee coorUnD = new Coordonnee (50, 85)
 Station unD = new Station ("UnD", 40, coorUnD)
@@ -94,11 +16,11 @@ Troncon tron4 = new Troncon (4, "UnD", "UnE", 40)
 
 Coordonnee coorUnE = new Coordonnee (50, 100)
 Station unE = new Station ("UnE", 40, coorUnE)
-Troncon tron5 = new Troncon (5, "UnE", "UnF", 40)
+Troncon tron5 = new Troncon (5, "UnE", "UnF", 45)
 
 Coordonnee coorUnF = new Coordonnee (50,140)
 Station unF = new Station ("UnF", 40, coorUnF)
-Troncon tron6 = new Troncon (6, "UnF", "UnG", 40)
+Troncon tron6 = new Troncon (6, "UnF", "UnG", 45)
 
 Coordonnee coorUnG = new Coordonnee (50,150)
 Station unG = new Station ("UnG", 40, coorUnG)
@@ -106,34 +28,34 @@ Troncon tron7 = new Troncon (7, "UnG", "UnH", 40)
 
 Coordonnee coorUnH = new Coordonnee (50,170)
 Station unH = new Station ("UnH", 40, coorUnH)
-Troncon tron8 = new Troncon (8, "UnH", "UnI", 40)
+Troncon tron8 = new Troncon (8, "UnH", "UnI", 30)
 
 Coordonnee coorUnI = new Coordonnee (50,200)
 Station unI = new Station ("UnI", 40, coorUnI)
-Troncon tron9 = new Troncon (9, "UnI", "UnJ", 40)
+Troncon tron9 = new Troncon (9, "UnI", "UnJ", 20)
 
 Coordonnee coorUnJ = new Coordonnee (50,215)
 Station unJ = new Station ("UnJ", 40, coorUnJ)
-Troncon tron10 = new Troncon (10, "UnJ", "UnK", 40)
+Troncon tron10 = new Troncon (10, "UnJ", "UnK", 20)
 
 Coordonnee coorUnK = new Coordonnee (50,230)
 Station unK = new Station ("UnK", 40, coorUnK)
 -----------------------------------------------------------------------
 Coordonnee coorDeuxA = new Coordonnee (100,0)
-Station deuce = new Station ("DeuxA", 40, coorDeuxA)
-Troncon tron11 = new Troncon (11, "DeuxA", "DeuxB", 40)
+Station deuxA = new Station ("DeuxA", 40, coorDeuxA)
+Troncon tron11 = new Troncon (11, "DeuxA", "DeuxB", 15)
 
 Coordonnee coorDeuxB = new Coordonnee (100,50)
 Station deuxB = new Station ("DeuxB", 40, coorDeuxB)
-Troncon tron12 = new Troncon (12, "DeuxB", "DeuxC", 40)
+Troncon tron12 = new Troncon (12, "DeuxB", "DeuxC", 15)
 
 Coordonnee coorDeuxC = new Coordonnee (100,60)
 Station deuxC = new Station ("DeuxC", 40, coorDeuxC)
-Troncon tron13 = new Troncon (13, "DeuxC", "DeuxD", 40)
+Troncon tron13 = new Troncon (13, "DeuxC", "DeuxD", 30)
 
 Coordonnee coorDeuxD = new Coordonnee (100, 90)
 Station deuxD = new Station ("deuxD", 40, coorDeuxD)
-Troncon tron14 = new Troncon (14, "DeuxD", "DeuxE", 40)
+Troncon tron14 = new Troncon (14, "DeuxD", "DeuxE", 30)
 
 Coordonnee coorDeuxE = new Coordonnee (100, 100)
 Station deuxE = new Station ("DeuxE", 40, coorDeuxE)
@@ -149,16 +71,16 @@ Troncon tron17 = new Troncon (17, "DeuxG", "DeuxH", 40)
 
 Coordonnee coorDeuxH = new Coordonnee (100,170)
 Station deuxH = new Station ("DeuxH", 40, coorDeuxH)
-Troncon tron18 = new Troncon (18, "DeuxH", "DeuxI", 40)
+Troncon tron18 = new Troncon (18, "DeuxH", "DeuxI", 30)
 
 Coordonnee coorDeuxI = new Coordonnee (100,200)
 Station deuxI = new Station ("DeuxI", 40, coorDeuxI)
-Troncon tron19 = new Troncon (19, "DeuxI", "DeuxJ", 40)
+Troncon tron19 = new Troncon (19, "DeuxI", "DeuxJ", 20)
 
 Coordonnee coorDeuxJ = new Coordonnee (100,240)
 Station deuxJ = new Station ("DeuxJ", 40, coorDeuxJ)
-Troncon tron20 = new Troncon (20, "DeuxJ", "DeuxK", 40)
+Troncon tron20 = new Troncon (20, "DeuxJ", "DeuxK", 20)
 
 Coordonnee coorDeuxK = new Coordonnee (100,250)
-Station DeuxK = new Station ("DeuxK", 40, coorDeuxK)
+Station deuxK = new Station ("DeuxK", 40, coorDeuxK)
 ------------------------------------------------------------------------
