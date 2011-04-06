@@ -3,27 +3,27 @@ import java.util.ArrayList;
 
 public class Ligne {
 
-	String nom;
-	ArrayList troncon;
+	private String nom;
+	private ArrayList<Troncon> troncons;
 	
-	public Ligne (String nom, ArrayList troncon) {
+	public Ligne (String nom, ArrayList<Troncon> tr) {
 		this.nom = nom;
-		this.troncon = troncon; 
+		this.troncons=tr; 
 	}
 
-	public String getNom() {
+	public final String getNom() {
 		return nom;
 	}
 
-	public void setNom(String nom) {
+	public final void setNom(String nom) {
 		this.nom = nom;
 	}
 
-	public ArrayList getTroncon() {
-		return troncon;
+	public final ArrayList<Troncon> getTroncon() {
+		return troncons;
 	}
 
-	public void setTroncon(ArrayList troncon) {
-		this.troncon = troncon;
+	public final void setTroncon(ArrayList<Troncon> tr) {
+		this.troncons = tr;
 	}
 }
