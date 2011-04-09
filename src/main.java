@@ -12,9 +12,10 @@ public class main {
 		int longitude = sc.nextInt();
 		ArrayList<Station> l = new ArrayList();
 		for (Station s : station) {
-			 if (((s.getX())-latitude)+(s.getY()-longitude) <= 20) {
+			
+		if  (Math.sqrt((Math.pow((s.getX()-latitude),2)+Math.pow(s.getY()-longitude,2))) <= 80) {
 				 
-				 l.add(s);
+				l.add(s);
 			 }
 		}
 		return l;
