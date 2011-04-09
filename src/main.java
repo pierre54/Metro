@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Main {
+public class main {
 
 	
 	public static void main(String[] args) {
@@ -382,6 +382,85 @@ public class Main {
 		Ligne ligneCinq = new Ligne("LigneCinq",tronconLigneCinq);
 		Ligne ligneSix = new Ligne("LigneSix",tronconLigneSix);
 		Ligne ligneSept = new Ligne("LigneSept",tronconLigneSept);
+		
+		ArrayList<Station> listeStation = new ArrayList<Station>();
+		listeStation.add(unA);
+		listeStation.add(unB);
+		listeStation.add(unC);
+		listeStation.add(unD);
+		listeStation.add(unE);
+		listeStation.add(unF);
+		listeStation.add(unG);
+		listeStation.add(unH);
+		listeStation.add(unI);
+		listeStation.add(unJ);
+		listeStation.add(unK);
+		
+		listeStation.add(deuxA);
+		listeStation.add(deuxB);
+		listeStation.add(deuxC);
+		listeStation.add(deuxD);
+		listeStation.add(deuxE);
+		listeStation.add(deuxF);
+		listeStation.add(deuxG);
+		listeStation.add(deuxH);
+		listeStation.add(deuxI);
+		listeStation.add(deuxJ);
+		listeStation.add(deuxK);
+
+		listeStation.add(troisA);
+		listeStation.add(troisB);
+		listeStation.add(troisC);
+		listeStation.add(troisD);
+		listeStation.add(troisE);
+		listeStation.add(troisF);
+		listeStation.add(troisG);
+		listeStation.add(troisH);
+		listeStation.add(troisI);
+		listeStation.add(troisJ);
+		listeStation.add(troisK);
+		
+		listeStation.add(quatreA);
+		listeStation.add(quatreB);
+		listeStation.add(quatreC);
+		listeStation.add(quatreD);
+		listeStation.add(quatreE);
+		listeStation.add(quatreF);
+		listeStation.add(quatreG);
+		listeStation.add(quatreH);
+		listeStation.add(quatreI);
+		listeStation.add(quatreJ);
+		
+		listeStation.add(cinqA);
+		listeStation.add(cinqB);
+		listeStation.add(cinqC);
+		listeStation.add(cinqD);
+		listeStation.add(cinqE);
+		listeStation.add(cinqF);
+		listeStation.add(cinqG);
+		listeStation.add(cinqH);
+		listeStation.add(cinqI);
+		listeStation.add(cinqJ);
+		
+		listeStation.add(sixA);
+		listeStation.add(sixB);
+		listeStation.add(sixC);
+		listeStation.add(sixD);
+		listeStation.add(sixE);
+		listeStation.add(sixF);
+		listeStation.add(sixG);
+		listeStation.add(sixH);
+		listeStation.add(sixI);
+		listeStation.add(sixJ);
+		
+		listeStation.add(septA);
+		listeStation.add(septB);
+		listeStation.add(septC);
+		listeStation.add(septD);
+		listeStation.add(septE);
+		listeStation.add(septF);
+		listeStation.add(septG);
+		listeStation.add(septH);
 		
 		Scanner sc = new Scanner(System.in);
 		
