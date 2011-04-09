@@ -4,15 +4,24 @@ import java.util.Scanner;
 
 public class main {
 
-	
+	public static ArrayList<Station> laPlusProche(ArrayList<Station> station) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Entrer la latitude :");
+		int latitude = sc.nextInt();
+		System.out.println("Entrer la longitude :");
+		int longitude = sc.nextInt();
+		ArrayList<Station> l = new ArrayList();
+		for (Station s : station) {
+			 if (((s.getX())-latitude)+(s.getY()-longitude) <= 20) {
+				 
+				 l.add(s);
+			 }
+		}
+		return l;
+		
+	}
 	public static void main(String[] args) {
 	
-		//Coordonnee Coorzola = new Coordonnee (102.65476 , 117.34587);
-		//Coordonnee CoorPorteItalie = new Coordonnee (48.81899 , 2.36025);
-		//Station zola  = new Station("Zola",40,Coorzola );
-		//Station GareDeLest = new Station("Gare de l'est", 40, 107.876 , 127.655);
-		//Station porteItalie = new Station ("Porte d'italie",40,CoorPorteItalie);
-		
 		Coordonnee coorUnA = new Coordonnee (50,0);
 		Station unA = new Station ("UnA", 40, coorUnA);
 
@@ -462,12 +471,12 @@ public class main {
 		listeStation.add(septG);
 		listeStation.add(septH);
 		
-		Scanner sc = new Scanner(System.in);
+		//laPlusProche(listeStation);
+		for (Station e : laPlusProche(listeStation)) {
+			System.out.println(e.getNom());
+		}
 		
-		System.out.println("Entrer la latitude :");
-		int latitude = sc.nextInt();
-		System.out.println("Entrer la longitude :");
-		int longitude = sc.nextInt();
+		
 		}
 		
 	
