@@ -5,24 +5,30 @@ import java.util.Scanner;
 
 public class main {
 
-	public static Station[] laPlusProche(Station[] station) {
-		/*Scanner sc = new Scanner(System.in);
-		ArrayList<Station> l = new ArrayList();
-		
+	
+	public static Coordonnee ask() {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Entrer la latitude :");
 		int latitude = sc.nextInt();
 		System.out.println("Entrer la longitude :");
 		int longitude = sc.nextInt();
-		
-		for (Station s : station) {
-			if  (Math.sqrt((Math.pow((s.getX()-latitude),2)+Math.pow(s.getY()-longitude,2))) <= 50) {
-				l.add(s);
-			}
-		}*/
-		
-		return station;
+		Coordonnee c = new Coordonnee(latitude,longitude);
+		return c;
 		
 	}
+	
+	public static Station[] laPlusProche(Station[] station, Coordonnee c) {
+		Station[] l = new Station[50];
+		int i = 0; 
+		for (int j = 0; j <station.length ; j++) {
+			if  (Math.sqrt((Math.pow((station[j].getX()-c.getX()),2)+Math.pow(station[j].getY()-c.getY(),2))) <= 50) {
+				l[i] = station[j];
+				i++;
+			}
+		}
+		return station;
+	}
+	
 	public static void main(String[] args) {
 	
 		Coordonnee coorUnA = new Coordonnee (50,0);
@@ -395,89 +401,91 @@ public class main {
 		Ligne ligneSix = new Ligne("LigneSix",tronconLigneSix);
 		Ligne ligneSept = new Ligne("LigneSept",tronconLigneSept);
 		
-		Station[] listeStation = new Station[63];
+		Station[] listeStation = new Station[71];
 		listeStation[0]=unA;
-		listeStation[2]=unB;
-		listeStation[3]=unC;
-		listeStation[4]=unD;
-		listeStation[5]=unE;
-		listeStation[6]=unF;
-		listeStation[7]=unG;
-		listeStation[8]=unH;
-		listeStation[9]=unI;
-		listeStation[10]=unJ;
-		listeStation[11]=unK;
+		listeStation[1]=unB;
+		listeStation[2]=unC;
+		listeStation[3]=unD;
+		listeStation[4]=unE;
+		listeStation[5]=unF;
+		listeStation[6]=unG;
+		listeStation[7]=unH;
+		listeStation[8]=unI;
+		listeStation[9]=unJ;
+		listeStation[10]=unK;
 		
-		listeStation[12]=deuxA;
-		listeStation[13]=deuxB;
-		listeStation[14]=deuxC;
-		listeStation[15]=deuxD;
-		listeStation[16]=deuxE;
-		listeStation[17]=deuxF;
-		listeStation[18]=deuxG;
-		listeStation[19]=deuxH;
-		listeStation[20]=deuxI;
-		listeStation[21]=deuxJ;
-		listeStation[22]=deuxK;
+		listeStation[11]=deuxA;
+		listeStation[12]=deuxB;
+		listeStation[13]=deuxC;
+		listeStation[14]=deuxD;
+		listeStation[15]=deuxE;
+		listeStation[16]=deuxF;
+		listeStation[17]=deuxG;
+		listeStation[18]=deuxH;
+		listeStation[19]=deuxI;
+		listeStation[20]=deuxJ;
+		listeStation[21]=deuxK;
 
-		listeStation[23]=troisA;
-		listeStation[24]=troisB;
-		listeStation[25]=troisC;
-		listeStation[26]=troisD;
-		listeStation[27]=troisE;
-		listeStation[28]=troisF;
-		listeStation[29]=troisG;
-		listeStation[30]=troisH;
-		listeStation[31]=troisI;
-		listeStation[32]=troisJ;
-		listeStation[33]=troisK;
+		listeStation[22]=troisA;
+		listeStation[23]=troisB;
+		listeStation[24]=troisC;
+		listeStation[25]=troisD;
+		listeStation[26]=troisE;
+		listeStation[27]=troisF;
+		listeStation[28]=troisG;
+		listeStation[29]=troisH;
+		listeStation[30]=troisI;
+		listeStation[31]=troisJ;
+		listeStation[32]=troisK;
 		
-		listeStation[34]=quatreA;
-		listeStation[35]=quatreB;
-		listeStation[36]=quatreC;
-		listeStation[37]=quatreD;
-		listeStation[38]=quatreE;
-		listeStation[39]=quatreF;
-		listeStation[40]=quatreG;
-		listeStation[41]=quatreH;
-		listeStation[42]=quatreI;
-		listeStation[43]=quatreJ;
-		
-		listeStation[44]=cinqA;
+		listeStation[33]=quatreA;
+		listeStation[34]=quatreB;
+		listeStation[35]=quatreC;
+		listeStation[36]=quatreD;
+		listeStation[37]=quatreE;
+		listeStation[38]=quatreF;
+		listeStation[39]=quatreG;
+		listeStation[40]=quatreH;
+		listeStation[41]=quatreI;
+		listeStation[42]=quatreJ;
+	
+		listeStation[43]=cinqA;
 		listeStation[44]=cinqB;
-		listeStation[44]=cinqC;
-		listeStation[44]=cinqD;
-		listeStation[44]=cinqE;
-		listeStation[44]=cinqF;
-		listeStation[44]=cinqG;
-		listeStation[44]=cinqH;
-		listeStation[44]=cinqI;
-		listeStation[44]=cinqJ;
+		listeStation[45]=cinqC;
+		listeStation[46]=cinqD;
+		listeStation[47]=cinqE;
+		listeStation[48]=cinqF;
+		listeStation[49]=cinqG;
+		listeStation[50]=cinqH;
+		listeStation[51]=cinqI;
+		listeStation[52]=cinqJ;
 		
-		listeStation[45]=sixA;
-		listeStation[46]=sixB;
-		listeStation[47]=sixC;
-		listeStation[48]=sixD;
-		listeStation[49]=sixE;
-		listeStation[50]=sixF;
-		listeStation[51]=sixG;
-		listeStation[52]=sixH;
-		listeStation[53]=sixI;
-		listeStation[54]=sixJ;
+		listeStation[53]=sixA;
+		listeStation[54]=sixB;
+		listeStation[55]=sixC;
+		listeStation[56]=sixD;
+		listeStation[57]=sixE;
+		listeStation[58]=sixF;
+		listeStation[59]=sixG;
+		listeStation[60]=sixH;
+		listeStation[61]=sixI;
+		listeStation[62]=sixJ;
 		
-		listeStation[55]=septA;
-		listeStation[56]=septA;
-		listeStation[57]=septA;
-		listeStation[58]=septA;
-		listeStation[59]=septA;
-		listeStation[60]=septA;
-		listeStation[61]=septA;
-		listeStation[62]=septA;
+		listeStation[63]=septA;
+		listeStation[64]=septB;
+		listeStation[65]=septC;
+		listeStation[66]=septD;
+		listeStation[67]=septE;
+		listeStation[68]=septF;
+		listeStation[69]=septG;
+		listeStation[70]=septH;
 		
+		Coordonnee a = ask();
+		laPlusProche(listeStation,a);
 		//laPlusProche(listeStation);
-		for (Station e : laPlusProche(listeStation)) {
-			System.out.println(e.getNom());
-		}
+		//for (Station e : laPlusProche(listeStation)) {
+		//	System.out.println(e.getNom());
+		//}
 		
 		
 		}
