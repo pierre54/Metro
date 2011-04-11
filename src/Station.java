@@ -12,7 +12,6 @@ public class Station {
 		this.tpsArret = tpsArret;
 		this.incident = false;
 		this.c = c;
-		
 	}
 	
 	public String getNom() {
@@ -47,8 +46,7 @@ public class Station {
 	public double getY() {
 		return c.getY();
 	}
-
-
+	
 	public Station laPlusProche(Coordonnee c) {
 		return null;
 	}

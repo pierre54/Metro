@@ -1,24 +1,26 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 
 public class main {
 
-	public static ArrayList<Station> laPlusProche(ArrayList<Station> station) {
-		Scanner sc = new Scanner(System.in);
+	public static Station[] laPlusProche(Station[] station) {
+		/*Scanner sc = new Scanner(System.in);
+		ArrayList<Station> l = new ArrayList();
+		
 		System.out.println("Entrer la latitude :");
 		int latitude = sc.nextInt();
 		System.out.println("Entrer la longitude :");
 		int longitude = sc.nextInt();
-		ArrayList<Station> l = new ArrayList();
+		
 		for (Station s : station) {
-			
-		if  (Math.sqrt((Math.pow((s.getX()-latitude),2)+Math.pow(s.getY()-longitude,2))) <= 80) {
-				 
+			if  (Math.sqrt((Math.pow((s.getX()-latitude),2)+Math.pow(s.getY()-longitude,2))) <= 50) {
 				l.add(s);
-			 }
-		}
-		return l;
+			}
+		}*/
+		
+		return station;
 		
 	}
 	public static void main(String[] args) {
@@ -307,83 +309,83 @@ public class main {
 		Troncon tron63 = new Troncon (63, septF, septG, 40);
 		Troncon tron64 = new Troncon (64, septG, septH, 40);
 
-		ArrayList<Troncon> tronconLigneUn = new ArrayList<Troncon>();
-		tronconLigneUn.add(tron1);
-		tronconLigneUn.add(tron2);
-		tronconLigneUn.add(tron3);
-		tronconLigneUn.add(tron4);
-		tronconLigneUn.add(tron5);
-		tronconLigneUn.add(tron6);
-		tronconLigneUn.add(tron7);
-		tronconLigneUn.add(tron8);
-		tronconLigneUn.add(tron9);
-		tronconLigneUn.add(tron10);
+		Troncon[] tronconLigneUn = new Troncon[10];
+		tronconLigneUn[0]=tron1;
+		tronconLigneUn[1]=tron2;
+		tronconLigneUn[2]=tron2;
+		tronconLigneUn[3]=tron3;
+		tronconLigneUn[4]=tron4;
+		tronconLigneUn[5]=tron5;
+		tronconLigneUn[6]=tron6;
+		tronconLigneUn[7]=tron7;
+		tronconLigneUn[8]=tron8;
+		tronconLigneUn[9]=tron9;
+		
+		Troncon[] tronconLigneDeux = new Troncon[10];
+		tronconLigneDeux[0]=tron10;
+		tronconLigneDeux[1]=tron11;
+		tronconLigneDeux[2]=tron12;
+		tronconLigneDeux[3]=tron13;
+		tronconLigneDeux[4]=tron14;
+		tronconLigneDeux[5]=tron15;
+		tronconLigneDeux[6]=tron16;
+		tronconLigneDeux[7]=tron17;
+		tronconLigneDeux[8]=tron18;
+		tronconLigneDeux[9]=tron19;
 
-		ArrayList<Troncon> tronconLigneDeux = new ArrayList<Troncon>();
-		tronconLigneDeux.add(tron11);
-		tronconLigneDeux.add(tron12);
-		tronconLigneDeux.add(tron13);
-		tronconLigneDeux.add(tron14);
-		tronconLigneDeux.add(tron15);
-		tronconLigneDeux.add(tron16);
-		tronconLigneDeux.add(tron17);
-		tronconLigneDeux.add(tron18);
-		tronconLigneDeux.add(tron19);
-		tronconLigneDeux.add(tron20);
+		Troncon[] tronconLigneTrois = new Troncon[10];
+		tronconLigneTrois[0]=tron21;
+		tronconLigneTrois[1]=tron22;
+		tronconLigneTrois[2]=tron23;
+		tronconLigneTrois[3]=tron24;
+		tronconLigneTrois[4]=tron25;
+		tronconLigneTrois[5]=tron26;
+		tronconLigneTrois[6]=tron27;
+		tronconLigneTrois[7]=tron28;
+		tronconLigneTrois[8]=tron29;
+		tronconLigneTrois[9]=tron30;
 
-		ArrayList<Troncon> tronconLigneTrois = new ArrayList<Troncon>();
-		tronconLigneTrois.add(tron21);
-		tronconLigneTrois.add(tron22);
-		tronconLigneTrois.add(tron23);
-		tronconLigneTrois.add(tron24);
-		tronconLigneTrois.add(tron25);
-		tronconLigneTrois.add(tron26);
-		tronconLigneTrois.add(tron27);
-		tronconLigneTrois.add(tron28);
-		tronconLigneTrois.add(tron29);
-		tronconLigneTrois.add(tron30);
+		Troncon[] tronconLigneQuatre = new Troncon[9];
+		tronconLigneQuatre[0]=tron31;
+		tronconLigneQuatre[1]=tron32;
+		tronconLigneQuatre[2]=tron33;
+		tronconLigneQuatre[3]=tron34;
+		tronconLigneQuatre[4]=tron35;
+		tronconLigneQuatre[5]=tron36;
+		tronconLigneQuatre[6]=tron37;
+		tronconLigneQuatre[7]=tron38;
+		tronconLigneQuatre[8]=tron39;
 
-		ArrayList<Troncon> tronconLigneQuatre = new ArrayList<Troncon>();
-		tronconLigneQuatre.add(tron31);
-		tronconLigneQuatre.add(tron32);
-		tronconLigneQuatre.add(tron33);
-		tronconLigneQuatre.add(tron34);
-		tronconLigneQuatre.add(tron35);
-		tronconLigneQuatre.add(tron36);
-		tronconLigneQuatre.add(tron37);
-		tronconLigneQuatre.add(tron38);
-		tronconLigneQuatre.add(tron39);
+		Troncon[] tronconLigneCinq = new Troncon[9];
+		tronconLigneCinq[0]=tron40;
+		tronconLigneCinq[1]=tron41;
+		tronconLigneCinq[2]=tron42;
+		tronconLigneCinq[3]=tron43;
+		tronconLigneCinq[4]=tron44;
+		tronconLigneCinq[5]=tron45;
+		tronconLigneCinq[6]=tron46;
+		tronconLigneCinq[7]=tron47;
+		tronconLigneCinq[8]=tron48;
 
-		ArrayList<Troncon> tronconLigneCinq = new ArrayList<Troncon>();
-		tronconLigneCinq.add(tron40);
-		tronconLigneCinq.add(tron41);
-		tronconLigneCinq.add(tron42);
-		tronconLigneCinq.add(tron43);
-		tronconLigneCinq.add(tron44);
-		tronconLigneCinq.add(tron45);
-		tronconLigneCinq.add(tron46);
-		tronconLigneCinq.add(tron47);
-		tronconLigneCinq.add(tron48);
+		Troncon[] tronconLigneSix = new Troncon[9];
+		tronconLigneSix[0]=tron49;
+		tronconLigneSix[0]=tron50;
+		tronconLigneSix[0]=tron51;
+		tronconLigneSix[0]=tron52;
+		tronconLigneSix[0]=tron53;
+		tronconLigneSix[0]=tron54;
+		tronconLigneSix[0]=tron55;
+		tronconLigneSix[0]=tron56;
+		tronconLigneSix[0]=tron57;
 
-		ArrayList<Troncon> tronconLigneSix = new ArrayList<Troncon>();
-		tronconLigneSix.add(tron49);
-		tronconLigneSix.add(tron50);
-		tronconLigneSix.add(tron51);
-		tronconLigneSix.add(tron52);
-		tronconLigneSix.add(tron53);
-		tronconLigneSix.add(tron54);
-		tronconLigneSix.add(tron55);
-		tronconLigneSix.add(tron56);
-		tronconLigneSix.add(tron57);
-
-		ArrayList<Troncon> tronconLigneSept = new ArrayList<Troncon>();
-		tronconLigneSept.add(tron58);
-		tronconLigneSept.add(tron59);
-		tronconLigneSept.add(tron60);
-		tronconLigneSept.add(tron61);
-		tronconLigneSept.add(tron62);
-		tronconLigneSept.add(tron63);
-		tronconLigneSept.add(tron64);
+		Troncon[] tronconLigneSept = new Troncon[7];
+		tronconLigneSept[0]=tron58;
+		tronconLigneSept[1]=tron58;
+		tronconLigneSept[2]=tron58;
+		tronconLigneSept[3]=tron58;
+		tronconLigneSept[4]=tron58;
+		tronconLigneSept[5]=tron58;
+		tronconLigneSept[6]=tron58;
 
 		Ligne ligneUn = new Ligne("LigneUn",tronconLigneUn);
 		Ligne ligneDeux = new Ligne("LigneDeux",tronconLigneDeux);
@@ -393,84 +395,84 @@ public class main {
 		Ligne ligneSix = new Ligne("LigneSix",tronconLigneSix);
 		Ligne ligneSept = new Ligne("LigneSept",tronconLigneSept);
 		
-		ArrayList<Station> listeStation = new ArrayList<Station>();
-		listeStation.add(unA);
-		listeStation.add(unB);
-		listeStation.add(unC);
-		listeStation.add(unD);
-		listeStation.add(unE);
-		listeStation.add(unF);
-		listeStation.add(unG);
-		listeStation.add(unH);
-		listeStation.add(unI);
-		listeStation.add(unJ);
-		listeStation.add(unK);
+		Station[] listeStation = new Station[63];
+		listeStation[0]=unA;
+		listeStation[2]=unB;
+		listeStation[3]=unC;
+		listeStation[4]=unD;
+		listeStation[5]=unE;
+		listeStation[6]=unF;
+		listeStation[7]=unG;
+		listeStation[8]=unH;
+		listeStation[9]=unI;
+		listeStation[10]=unJ;
+		listeStation[11]=unK;
 		
-		listeStation.add(deuxA);
-		listeStation.add(deuxB);
-		listeStation.add(deuxC);
-		listeStation.add(deuxD);
-		listeStation.add(deuxE);
-		listeStation.add(deuxF);
-		listeStation.add(deuxG);
-		listeStation.add(deuxH);
-		listeStation.add(deuxI);
-		listeStation.add(deuxJ);
-		listeStation.add(deuxK);
+		listeStation[12]=deuxA;
+		listeStation[13]=deuxB;
+		listeStation[14]=deuxC;
+		listeStation[15]=deuxD;
+		listeStation[16]=deuxE;
+		listeStation[17]=deuxF;
+		listeStation[18]=deuxG;
+		listeStation[19]=deuxH;
+		listeStation[20]=deuxI;
+		listeStation[21]=deuxJ;
+		listeStation[22]=deuxK;
 
-		listeStation.add(troisA);
-		listeStation.add(troisB);
-		listeStation.add(troisC);
-		listeStation.add(troisD);
-		listeStation.add(troisE);
-		listeStation.add(troisF);
-		listeStation.add(troisG);
-		listeStation.add(troisH);
-		listeStation.add(troisI);
-		listeStation.add(troisJ);
-		listeStation.add(troisK);
+		listeStation[23]=troisA;
+		listeStation[24]=troisB;
+		listeStation[25]=troisC;
+		listeStation[26]=troisD;
+		listeStation[27]=troisE;
+		listeStation[28]=troisF;
+		listeStation[29]=troisG;
+		listeStation[30]=troisH;
+		listeStation[31]=troisI;
+		listeStation[32]=troisJ;
+		listeStation[33]=troisK;
 		
-		listeStation.add(quatreA);
-		listeStation.add(quatreB);
-		listeStation.add(quatreC);
-		listeStation.add(quatreD);
-		listeStation.add(quatreE);
-		listeStation.add(quatreF);
-		listeStation.add(quatreG);
-		listeStation.add(quatreH);
-		listeStation.add(quatreI);
-		listeStation.add(quatreJ);
+		listeStation[34]=quatreA;
+		listeStation[35]=quatreB;
+		listeStation[36]=quatreC;
+		listeStation[37]=quatreD;
+		listeStation[38]=quatreE;
+		listeStation[39]=quatreF;
+		listeStation[40]=quatreG;
+		listeStation[41]=quatreH;
+		listeStation[42]=quatreI;
+		listeStation[43]=quatreJ;
 		
-		listeStation.add(cinqA);
-		listeStation.add(cinqB);
-		listeStation.add(cinqC);
-		listeStation.add(cinqD);
-		listeStation.add(cinqE);
-		listeStation.add(cinqF);
-		listeStation.add(cinqG);
-		listeStation.add(cinqH);
-		listeStation.add(cinqI);
-		listeStation.add(cinqJ);
+		listeStation[44]=cinqA;
+		listeStation[44]=cinqB;
+		listeStation[44]=cinqC;
+		listeStation[44]=cinqD;
+		listeStation[44]=cinqE;
+		listeStation[44]=cinqF;
+		listeStation[44]=cinqG;
+		listeStation[44]=cinqH;
+		listeStation[44]=cinqI;
+		listeStation[44]=cinqJ;
 		
-		listeStation.add(sixA);
-		listeStation.add(sixB);
-		listeStation.add(sixC);
-		listeStation.add(sixD);
-		listeStation.add(sixE);
-		listeStation.add(sixF);
-		listeStation.add(sixG);
-		listeStation.add(sixH);
-		listeStation.add(sixI);
-		listeStation.add(sixJ);
+		listeStation[45]=sixA;
+		listeStation[46]=sixB;
+		listeStation[47]=sixC;
+		listeStation[48]=sixD;
+		listeStation[49]=sixE;
+		listeStation[50]=sixF;
+		listeStation[51]=sixG;
+		listeStation[52]=sixH;
+		listeStation[53]=sixI;
+		listeStation[54]=sixJ;
 		
-		listeStation.add(septA);
-		listeStation.add(septB);
-		listeStation.add(septC);
-		listeStation.add(septD);
-		listeStation.add(septE);
-		listeStation.add(septF);
-		listeStation.add(septG);
-		listeStation.add(septH);
+		listeStation[55]=septA;
+		listeStation[56]=septA;
+		listeStation[57]=septA;
+		listeStation[58]=septA;
+		listeStation[59]=septA;
+		listeStation[60]=septA;
+		listeStation[61]=septA;
+		listeStation[62]=septA;
 		
 		//laPlusProche(listeStation);
 		for (Station e : laPlusProche(listeStation)) {

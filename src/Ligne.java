@@ -4,9 +4,9 @@ import java.util.ArrayList;
 public class Ligne {
 
 	private String nom;
-	private ArrayList<Troncon> troncons;
+	private Troncon[] troncons;
 	
-	public Ligne (String nom, ArrayList<Troncon> tr) {
+	public Ligne (String nom, Troncon[] tr) {
 		this.nom = nom;
 		this.troncons=tr; 
 	}
@@ -19,11 +19,11 @@ public class Ligne {
 		this.nom = nom;
 	}
 
-	public final ArrayList<Troncon> getTroncon() {
+	public final Troncon[] getTroncon() {
 		return troncons;
 	}
 
-	public final void setTroncon(ArrayList<Troncon> tr) {
+	public final void setTroncon(Troncon[] tr) {
 		this.troncons = tr;
 	}
 }
