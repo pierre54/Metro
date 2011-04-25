@@ -7,8 +7,8 @@ import static org.junit.Assert.*;
 
 public class mainTest {
 	
-	private Station[] stations= new Station[10];
-	private Station[] stationsAttendues= new Station[10];
+	private Station[] stations= new Station[4];
+	private Station[] stationsAttendues= new Station[2];
 	private Coordonnee coorUnA = new Coordonnee(0,0);
 	private Station unA = new Station("UnA",40,coorUnA);
 	private Coordonnee coorUnB = new Coordonnee(60,0);
@@ -38,7 +38,7 @@ public class mainTest {
 		stationsAttendues[1]= unC;
 		
 		Station[] a = main.laPlusProche(stations, homme);
-		assertArrayEquals(stationsAttendues, a);
+		assertArrayEquals(" : Le test a échoué.",stationsAttendues, a);
 	}
 	
 	
