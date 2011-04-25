@@ -1,13 +1,10 @@
 package metro;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 
 public class main {
 
-	
 	public static Coordonnee ask() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Entrer la latitude :");
@@ -20,15 +17,23 @@ public class main {
 	}
 	
 	public static Station[] laPlusProche(Station[] station, Coordonnee c) {
-		Station[] l = new Station[50];
 		int i = 0; 
+		for (int j = 0; j <station.length ; j++) {
+			if  (Math.sqrt((Math.pow((station[j].getX()-c.getX()),2)+Math.pow(station[j].getY()-c.getY(),2))) <= 50) {
+				i++;
+			}
+		}
+		
+		Station[] l = new Station[i];
+		i=0;
+		
 		for (int j = 0; j <station.length ; j++) {
 			if  (Math.sqrt((Math.pow((station[j].getX()-c.getX()),2)+Math.pow(station[j].getY()-c.getY(),2))) <= 50) {
 				l[i] = station[j];
 				i++;
 			}
 		}
-		return station;
+		return l;
 	}
 	
 	public static void main(String[] args) {
@@ -483,11 +488,10 @@ public class main {
 		listeStation[70]=septH;
 		
 		Coordonnee a = ask();
-		laPlusProche(listeStation,a);
-		//laPlusProche(listeStation);
-		//for (Station e : laPlusProche(listeStation)) {
-		//	System.out.println(e.getNom());
-		//}
+		//laPlusProche(listeStation,a);
+		for (Station e : laPlusProche(listeStation,a)) {
+			System.out.println(e.getNom());
+		}
 		
 		
 		}
