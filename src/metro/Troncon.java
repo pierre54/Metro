@@ -1,7 +1,7 @@
 package metro;
 
 
-public class Troncon {
+public class Troncon{
 	
 	private int num;
 	private Station depart;
@@ -9,7 +9,7 @@ public class Troncon {
 	private int duree;
 	private boolean incident; 
 	
-	public Troncon(int num, Station depart, Station arrive,int duree ) {
+	public Troncon(int num, Station depart, Station arrive, int duree) {
 		this.num = num;
 		this.depart = depart; 
 		this.arrive = arrive;

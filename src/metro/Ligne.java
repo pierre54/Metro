@@ -1,13 +1,21 @@
 package metro;
 
-public class Ligne {
+import java.util.List;
+import java.util.LinkedList;
+
+
+public class Ligne{
 
 	private String nom;
-	private Troncon[] troncons;
+	private List<Troncon> troncons;
 	
-	public Ligne (String nom, Troncon[] tr) {
+	public Ligne(){
+		troncons = new LinkedList<Troncon>();
+	}
+	
+	public Ligne (String nom) {
+		this();
 		this.nom = nom;
-		this.troncons=tr; 
 	}
 
 	public final String getNom() {
@@ -17,12 +25,17 @@ public class Ligne {
 	public final void setNom(String nom) {
 		this.nom = nom;
 	}
-
-	public final Troncon[] getTroncon() {
+	
+	public final void ajoutTroncon(Troncon troncon){
+		troncons.add(troncon);
+	}
+	
+	public final void supprimeTroncon(Troncon troncon){
+		troncons.remove(troncon);
+	}
+	
+	public final List<Troncon> getTroncon(){
 		return troncons;
 	}
 
-	public final void setTroncon(Troncon[] tr) {
-		this.troncons = tr;
-	}
 }
