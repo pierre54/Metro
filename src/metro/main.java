@@ -1,24 +1,34 @@
 package metro;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Scanner;
-
+import java.util.*;
 
 public class Main {
 
 	public static Coordonnee ask() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Entrer la latitude :");
+		System.out.print("Entrer la latitude (0 à 200):");
 		int latitude = sc.nextInt();
-		System.out.println("Entrer la longitude :");
+		System.out.print("Entrer la longitude (0 à 250):");
 		int longitude = sc.nextInt();
 		Coordonnee c = new Coordonnee(latitude,longitude);
 		return c;
-		
+
 	}
-	
+
+	public static Station askDepart(Station[] proche){
+		Scanner sc = new Scanner(System.in);
+		String nomStation = sc.next();
+
+		for(Station s : proche){
+			if (s.getNom().matches(nomStation)){
+				return s;
+			}	
+		}
+
+		return null;
+	}
+
+	//Methode qui renvoie un tableau des stations les plus proches de l'utilisateur
 	public static Station[] laPlusProche(Station[] station, Coordonnee c) {
 		int i = 0; 
 		for (int j = 0; j <station.length ; j++) {
@@ -26,10 +36,10 @@ public class Main {
 				i++;
 			}
 		}
-		
+
 		Station[] l = new Station[i];
 		i=0;
-		
+
 		for (int j = 0; j <station.length ; j++) {
 			if  (Math.sqrt((Math.pow((station[j].getX()-c.getX()),2)+Math.pow(station[j].getY()-c.getY(),2))) <= 50) {
 				l[i] = station[j];
@@ -38,9 +48,49 @@ public class Main {
 		}
 		return l;
 	}
+
+	//Methode qui calcule la station la plus proche de l'arrivee voulue par l'utilisateur
+	public static Station larrivee(Station[] station, Coordonnee c) {
+		int i = 0; 
+		for (int j = 0; j <station.length ; j++) {
+			if  (Math.sqrt((Math.pow((station[j].getX()-c.getX()),2)+Math.pow(station[j].getY()-c.getY(),2))) <= 50) {
+				i++;
+			}
+		}
+
+		Station[] l = new Station[i];
+		i=0;
+
+		for (int j = 0; j <station.length ; j++) {
+			if  (Math.sqrt((Math.pow((station[j].getX()-c.getX()),2)+Math.pow(station[j].getY()-c.getY(),2))) <= 50) {
+				l[i] = station[j];
+				i++;
+			}
+		}
+		if(station.length>0){
+			return l[0];
+		}
+
+		return null;
+	}
+
+	public static List<Station> clearList(List<Station> stations){
+		//java.util.Iterator<Station> iterator = stations.iterator();
+		int i=0;
+		while(i<stations.size()){
+			Station s = stations.get(i);
+			
+			if(s.isIncident()){
+				stations.remove(i);
+				System.out.println("La station "+s.getNom()+" a un incident.");
+			}
+		}
+		
+		return stations;
+	}
 	
 	public static void main(String[] args) {
-	
+
 		Coordonnee coorUnA = new Coordonnee (50,0);
 		Station unA = new Station ("UnA", 40, coorUnA);
 
@@ -76,7 +126,7 @@ public class Main {
 
 		Troncon tron1 = new Troncon (1, unA, unB, 40);
 		Troncon tron2 = new Troncon (2, unB, unC, 50);
-		Troncon tron3 = new Troncon (3, unC, unD, 100);
+		Troncon tron3 = new Troncon (3, unC, unD, 90);
 		Troncon tron4 = new Troncon (4, unD, unE, 60);
 		Troncon tron5 = new Troncon (5, unE, unF, 40);
 		Troncon tron6 = new Troncon (6, unF, unG, 40);
@@ -84,7 +134,7 @@ public class Main {
 		Troncon tron8 = new Troncon (8, unH, unI, 40);
 		Troncon tron9 = new Troncon (9, unI, unJ, 40);
 		Troncon tron10 = new Troncon (10, unJ, unK, 40);
-		
+
 		Troncon tron65 = new Troncon (65, unB, unA, 40);
 		Troncon tron66 = new Troncon (66, unC, unB, 50);
 		Troncon tron67 = new Troncon (67, unD, unC, 30);
@@ -95,7 +145,7 @@ public class Main {
 		Troncon tron72 = new Troncon (72, unI, unH, 40);
 		Troncon tron73 = new Troncon (73, unJ, unI, 40);
 		Troncon tron74 = new Troncon (74, unK, unJ, 40);
-		
+
 		Coordonnee coorDeuxA = new Coordonnee (100,0);
 		Station deuxA = new Station ("DeuxA", 40, coorDeuxA);
 
@@ -139,7 +189,7 @@ public class Main {
 		Troncon tron18 = new Troncon (18, deuxH, deuxI, 40);
 		Troncon tron19 = new Troncon (19, deuxI, deuxJ, 40);
 		Troncon tron20 = new Troncon (20, deuxJ, deuxK, 40);
-	
+
 		Troncon tron75 = new Troncon (75, deuxB, deuxA, 70);
 		Troncon tron76 = new Troncon (76, deuxC, deuxB, 10);
 		Troncon tron77 = new Troncon (77, deuxD, deuxC, 10);
@@ -150,7 +200,7 @@ public class Main {
 		Troncon tron82 = new Troncon (82, deuxI, deuxH, 40);
 		Troncon tron83 = new Troncon (83, deuxJ, deuxI, 40);
 		Troncon tron84 = new Troncon (84, deuxK, deuxJ, 40);
-	
+
 		Coordonnee coorTroisA = new Coordonnee (150,0);
 		Station troisA = new Station ("TroisA", 40, coorTroisA);
 
@@ -194,7 +244,7 @@ public class Main {
 		Troncon tron28 = new Troncon (28, troisH, troisI, 40);
 		Troncon tron29 = new Troncon (29, troisI, troisJ, 40);
 		Troncon tron30 = new Troncon (30, troisJ, troisK, 40);
-		
+
 		Troncon tron85 = new Troncon (85, troisB, troisA, 40);
 		Troncon tron86 = new Troncon (86, troisC, troisB, 40);
 		Troncon tron87 = new Troncon (87, troisD, troisC, 40);
@@ -205,18 +255,12 @@ public class Main {
 		Troncon tron92 = new Troncon (92, troisI, troisH, 40);
 		Troncon tron93 = new Troncon (93, troisJ, troisI, 40);
 		Troncon tron94 = new Troncon (94, troisK, troisJ, 40);
-		
+
 		Coordonnee coorQuatreA = new Coordonnee (10,50);
 		Station quatreA = new Station ("QuatreA", 40, coorQuatreA);
 
-		//Coordonnee coorQuatreB = new Coordonnee (50,50);
-		//Station quatreB = new Station ("QuatreB", 40, coorQuatreB);
-
 		Coordonnee coorQuatreC = new Coordonnee (70,50);
 		Station quatreC = new Station ("QuatreC", 40, coorQuatreC);
-
-		//Coordonnee coorQuatreD = new Coordonnee (100,50);
-		//Station quatreD = new Station ("QuatreD", 40, coorQuatreD);
 
 		Coordonnee coorQuatreE = new Coordonnee (120,50);
 		Station quatreE = new Station ("QuatreE", 40, coorQuatreE);
@@ -226,9 +270,6 @@ public class Main {
 
 		Coordonnee coorQuatreG = new Coordonnee (140,50);
 		Station quatreG = new Station ("QuatreG", 40, coorQuatreG);
-
-		//Coordonnee coorQuatreH = new Coordonnee (150,50);
-		//Station quatreH = new Station ("QuatreH", 40, coorQuatreH);
 
 		Coordonnee coorQuatreI = new Coordonnee (160,50);
 		Station quatreI = new Station ("QuatreI", 40, coorQuatreI);
@@ -245,7 +286,7 @@ public class Main {
 		Troncon tron37 = new Troncon (37, quatreG, troisC, 40);
 		Troncon tron38 = new Troncon (38, troisC, quatreI, 40);
 		Troncon tron39 = new Troncon (39, quatreI, quatreJ, 40);
-		
+
 		Troncon tron95 = new Troncon (95, unC, quatreA, 40);
 		Troncon tron96 = new Troncon (96, quatreC, unC, 15);
 		Troncon tron97 = new Troncon (97, deuxB, quatreC, 25);
@@ -255,12 +296,9 @@ public class Main {
 		Troncon tron101 = new Troncon (101, troisC, quatreG, 40);
 		Troncon tron102 = new Troncon (102, quatreI, troisC, 40);
 		Troncon tron103 = new Troncon (103, quatreJ, quatreI, 40);
-		
+
 		Coordonnee coorCinqA = new Coordonnee (25,100);
 		Station cinqA = new Station ("CinqA", 40, coorCinqA);
-
-		//Coordonnee coorCinqB = new Coordonnee (50,100);
-		//Station cinqB = new Station ("CinqB", 40, coorCinqB);
 
 		Coordonnee coorCinqC = new Coordonnee (70,100);
 		Station cinqC = new Station ("CinqC", 40, coorCinqC);
@@ -268,24 +306,18 @@ public class Main {
 		Coordonnee coorCinqD = new Coordonnee (90,100);
 		Station cinqD = new Station ("CinqD", 40, coorCinqD);
 
-		//Coordonnee coorCinqE = new Coordonnee (100,100);
-		//Station cinqE = new Station ("CinqE", 40, coorCinqE);
-
 		Coordonnee coorCinqF = new Coordonnee (110,100);
 		Station cinqF = new Station ("CinqF", 40, coorCinqF);
 
 		Coordonnee coorCinqG = new Coordonnee (130,100);
 		Station cinqG = new Station ("CinqG", 40, coorCinqG);
 
-		//Coordonnee coorCinqH = new Coordonnee (150,100);
-		//Station cinqH = new Station ("CinqH", 40, coorCinqH);
-
 		Coordonnee coorCinqI = new Coordonnee (180,100);
 		Station cinqI = new Station ("CinqI", 40, coorCinqI);
 
 		Coordonnee coorCinqJ = new Coordonnee (200,100);
 		Station cinqJ = new Station ("CinqJ", 40, coorCinqJ);
-	
+
 		Troncon tron40 = new Troncon (40, cinqA, unE, 40);
 		Troncon tron41 = new Troncon (41, unE, cinqC, 10);
 		Troncon tron42 = new Troncon (42, cinqC, cinqD, 10);
@@ -295,7 +327,7 @@ public class Main {
 		Troncon tron46 = new Troncon (46, cinqG, troisE, 40);
 		Troncon tron47 = new Troncon (47, troisE, cinqI, 40);
 		Troncon tron48 = new Troncon (48, cinqI, cinqJ, 40);
-	
+
 		Troncon tron104 = new Troncon (104, unE, cinqA, 40);
 		Troncon tron105 = new Troncon (105, cinqC, unE, 10);
 		Troncon tron106 = new Troncon (106, cinqD, cinqC, 10);
@@ -305,15 +337,12 @@ public class Main {
 		Troncon tron110 = new Troncon (110, troisE, cinqG, 40);
 		Troncon tron111 = new Troncon (111, cinqI, troisE, 40);
 		Troncon tron112 = new Troncon (112, cinqJ, cinqI, 40);
-		
+
 		Coordonnee coorSixA = new Coordonnee (0,150);
 		Station sixA = new Station ("SixA", 40, coorSixA);
 
 		Coordonnee coorSixB = new Coordonnee (20,150);
 		Station sixB = new Station ("SixB", 40, coorSixB);
-
-		//Coordonnee coorSixC = new Coordonnee (50,150);
-		//Station sixC = new Station ("SixC", 40, coorSixC);
 
 		Coordonnee coorSixD = new Coordonnee (70,150);
 		Station sixD = new Station ("SixD", 40, coorSixD);
@@ -321,21 +350,15 @@ public class Main {
 		Coordonnee coorSixE = new Coordonnee (85,150);
 		Station sixE = new Station ("SixE", 40, coorSixE);
 
-		//Coordonnee coorSixF = new Coordonnee (100,150);
-		//Station sixF = new Station ("SixF", 40, coorSixF);
-
 		Coordonnee coorSixG = new Coordonnee (120,150);
 		Station sixG = new Station ("SixG", 40, coorSixG);
-
-		//Coordonnee coorSixH = new Coordonnee (150,150);
-		//Station sixH = new Station ("SixH", 40, coorSixH);
 
 		Coordonnee coorSixI = new Coordonnee (165,150);
 		Station sixI = new Station ("SixI", 40, coorSixI);
 
 		Coordonnee coorSixJ = new Coordonnee (200,150);
 		Station sixJ = new Station ("SixJ", 40, coorSixJ);
-		
+
 		Troncon tron49 = new Troncon (49, sixA, sixB, 40);
 		Troncon tron50 = new Troncon (50, sixB, unG, 40);
 		Troncon tron51 = new Troncon (51, unG, sixD, 40);
@@ -345,7 +368,7 @@ public class Main {
 		Troncon tron55 = new Troncon (55, sixG, troisG, 40);
 		Troncon tron56 = new Troncon (56, troisG, sixI, 40);
 		Troncon tron57 = new Troncon (57, sixI, sixJ, 40);
-		
+
 		Troncon tron113 = new Troncon (113, sixB, sixA, 40);
 		Troncon tron114 = new Troncon (116, unG, sixB, 40);
 		Troncon tron115 = new Troncon (117, sixD, unG, 40);
@@ -355,31 +378,22 @@ public class Main {
 		Troncon tron119 = new Troncon (119, troisG, sixG, 40);
 		Troncon tron120 = new Troncon (120, sixI, troisG, 40);
 		Troncon tron121 = new Troncon (121, sixJ, sixI, 40);
-		
+
 		Coordonnee coorSeptA = new Coordonnee (10,200);
 		Station septA = new Station ("SeptA", 40, coorSeptA);
 
 		Coordonnee coorSeptB = new Coordonnee (35,200);
 		Station septB = new Station ("SeptB", 40, coorSeptB);
 
-		//Coordonnee coorSeptC = new Coordonnee (50,200);
-		//Station septC = new Station ("SeptC", 40, coorSeptC);
-
 		Coordonnee coorSeptD = new Coordonnee (75,200);
 		Station septD = new Station ("SeptD", 40, coorSeptD);
-
-		//Coordonnee coorSeptE = new Coordonnee (100,200);
-		//Station septE = new Station ("SeptE", 40, coorSeptE);
 
 		Coordonnee coorSeptF = new Coordonnee (120,200);
 		Station septF = new Station ("SeptF", 40, coorSeptF);
 
-		//Coordonnee coorSeptG = new Coordonnee (150,200);
-		//Station septG = new Station ("SeptG", 40, coorSeptG);
-
 		Coordonnee coorSeptH = new Coordonnee (200,200);
 		Station septH = new Station ("SeptH", 40, coorSeptH);
-		
+
 		Troncon tron58 = new Troncon (58, septA, septB, 40);
 		Troncon tron59 = new Troncon (59, septB, unI, 40);
 		Troncon tron60 = new Troncon (60, unI, septD, 40);
@@ -387,7 +401,7 @@ public class Main {
 		Troncon tron62 = new Troncon (62, deuxI, septF, 40);
 		Troncon tron63 = new Troncon (63, septF, troisI, 40);
 		Troncon tron64 = new Troncon (64, troisI, septH, 40);
-		
+
 		Troncon tron122 = new Troncon (122, septB, septA, 40);
 		Troncon tron123 = new Troncon (123, unI, septB, 40);
 		Troncon tron124 = new Troncon (124, septD, unI, 40);
@@ -395,7 +409,7 @@ public class Main {
 		Troncon tron126 = new Troncon (126, septF, deuxI, 40);
 		Troncon tron127 = new Troncon (127, troisI, septF, 40);
 		Troncon tron128 = new Troncon (128, septH, troisI, 40);
-		
+
 		Ligne ligneUn = new Ligne("LigneUn");
 		ligneUn.ajoutTroncon(tron1);
 		ligneUn.ajoutTroncon(tron2);
@@ -407,7 +421,7 @@ public class Main {
 		ligneUn.ajoutTroncon(tron8);
 		ligneUn.ajoutTroncon(tron9);
 		ligneUn.ajoutTroncon(tron10);
-		
+
 		Ligne ligneUnBis = new Ligne("LigneUnBis");
 		ligneUnBis.ajoutTroncon(tron65);
 		ligneUnBis.ajoutTroncon(tron66);
@@ -419,7 +433,7 @@ public class Main {
 		ligneUnBis.ajoutTroncon(tron72);
 		ligneUnBis.ajoutTroncon(tron73);
 		ligneUnBis.ajoutTroncon(tron74);
-		
+
 		Ligne ligneDeux = new Ligne("LigneDeux");
 		ligneDeux.ajoutTroncon(tron11);
 		ligneDeux.ajoutTroncon(tron12);
@@ -431,7 +445,7 @@ public class Main {
 		ligneDeux.ajoutTroncon(tron18);
 		ligneDeux.ajoutTroncon(tron19);
 		ligneDeux.ajoutTroncon(tron20);
-		
+
 		Ligne ligneDeuxBis = new Ligne("LigneDeuxBis");
 		ligneDeuxBis.ajoutTroncon(tron75);
 		ligneDeuxBis.ajoutTroncon(tron76);
@@ -443,7 +457,7 @@ public class Main {
 		ligneDeuxBis.ajoutTroncon(tron82);
 		ligneDeuxBis.ajoutTroncon(tron83);
 		ligneDeuxBis.ajoutTroncon(tron84);
-		
+
 		Ligne ligneTrois = new Ligne("LigneTrois");
 		ligneTrois.ajoutTroncon(tron21);
 		ligneTrois.ajoutTroncon(tron22);
@@ -455,7 +469,7 @@ public class Main {
 		ligneTrois.ajoutTroncon(tron28);
 		ligneTrois.ajoutTroncon(tron29);
 		ligneTrois.ajoutTroncon(tron30);
-		
+
 		Ligne ligneTroisBis = new Ligne("LigneTroisBis");
 		ligneTroisBis.ajoutTroncon(tron85);
 		ligneTroisBis.ajoutTroncon(tron86);
@@ -467,7 +481,7 @@ public class Main {
 		ligneTroisBis.ajoutTroncon(tron92);
 		ligneTroisBis.ajoutTroncon(tron93);
 		ligneTroisBis.ajoutTroncon(tron94);
-		
+
 		Ligne ligneQuatre = new Ligne("LigneQuatre");
 		ligneQuatre.ajoutTroncon(tron31);
 		ligneQuatre.ajoutTroncon(tron32);
@@ -478,7 +492,7 @@ public class Main {
 		ligneQuatre.ajoutTroncon(tron37);
 		ligneQuatre.ajoutTroncon(tron38);
 		ligneQuatre.ajoutTroncon(tron39);
-		
+
 		Ligne ligneQuatreBis = new Ligne("LigneQuatreBis");
 		ligneQuatreBis.ajoutTroncon(tron95);
 		ligneQuatreBis.ajoutTroncon(tron96);
@@ -489,7 +503,7 @@ public class Main {
 		ligneQuatreBis.ajoutTroncon(tron101);
 		ligneQuatreBis.ajoutTroncon(tron102);
 		ligneQuatreBis.ajoutTroncon(tron103);
-		
+
 		Ligne ligneCinq = new Ligne("LigneCinq");
 		ligneCinq.ajoutTroncon(tron40);
 		ligneCinq.ajoutTroncon(tron41);
@@ -500,7 +514,7 @@ public class Main {
 		ligneCinq.ajoutTroncon(tron46);
 		ligneCinq.ajoutTroncon(tron47);
 		ligneCinq.ajoutTroncon(tron48);
-		
+
 		Ligne ligneCinqBis = new Ligne("LigneCinqBis");
 		ligneCinqBis.ajoutTroncon(tron104);
 		ligneCinqBis.ajoutTroncon(tron105);
@@ -511,7 +525,7 @@ public class Main {
 		ligneCinqBis.ajoutTroncon(tron110);
 		ligneCinqBis.ajoutTroncon(tron111);
 		ligneCinqBis.ajoutTroncon(tron112);
-		
+
 		Ligne ligneSix = new Ligne("LigneSix");		
 		ligneSix.ajoutTroncon(tron49);
 		ligneSix.ajoutTroncon(tron50);
@@ -522,7 +536,7 @@ public class Main {
 		ligneSix.ajoutTroncon(tron55);
 		ligneSix.ajoutTroncon(tron56);
 		ligneSix.ajoutTroncon(tron57);
-		
+
 		Ligne ligneSixBis = new Ligne("LigneSixBis");
 		ligneSixBis.ajoutTroncon(tron113);
 		ligneSixBis.ajoutTroncon(tron114);
@@ -533,7 +547,7 @@ public class Main {
 		ligneSixBis.ajoutTroncon(tron119);
 		ligneSixBis.ajoutTroncon(tron120);
 		ligneSixBis.ajoutTroncon(tron121);
-		
+
 		Ligne ligneSept = new Ligne("LigneSept");
 		ligneSept.ajoutTroncon(tron58);
 		ligneSept.ajoutTroncon(tron59);
@@ -542,7 +556,7 @@ public class Main {
 		ligneSept.ajoutTroncon(tron62);
 		ligneSept.ajoutTroncon(tron63);
 		ligneSept.ajoutTroncon(tron64);
-		
+
 		Ligne ligneSeptBis = new Ligne("LigneSeptBis");
 		ligneSeptBis.ajoutTroncon(tron122);
 		ligneSeptBis.ajoutTroncon(tron123);
@@ -551,7 +565,7 @@ public class Main {
 		ligneSeptBis.ajoutTroncon(tron126);
 		ligneSeptBis.ajoutTroncon(tron127);
 		ligneSeptBis.ajoutTroncon(tron128);
-		
+
 		ArrayList<Ligne> lignes = new ArrayList<Ligne>();
 		lignes.add(ligneUn);
 		lignes.add(ligneDeux);
@@ -567,9 +581,9 @@ public class Main {
 		lignes.add(ligneCinqBis);
 		lignes.add(ligneSixBis);
 		lignes.add(ligneSeptBis);
-		
+
 		ArrayList<Station> stations = new ArrayList<Station>();
-		
+
 		stations.add(unA);
 		stations.add(unB);
 		stations.add(unC);
@@ -581,7 +595,7 @@ public class Main {
 		stations.add(unI);
 		stations.add(unJ);
 		stations.add(unK);
-		
+
 		stations.add(deuxA);
 		stations.add(deuxB);
 		stations.add(deuxC);
@@ -605,94 +619,150 @@ public class Main {
 		stations.add(troisI);
 		stations.add(troisJ);
 		stations.add(troisK);
-		
+
 		stations.add(quatreA);
-		//listeStation[34]=quatreB;
-		//listeStation[34]=unC;
 		stations.add(quatreC);
-		//listeStation[36]=quatreD;
-		//listeStation[35]=deuxB;
 		stations.add(quatreE);
 		stations.add(quatreF);
 		stations.add(quatreG);
-		//listeStation[40]=quatreH;
-		//listeStation[40]=troisC;
 		stations.add(quatreI);
 		stations.add(quatreJ);
-	
+
 		stations.add(cinqA);
-		//listeStation[44]=cinqB;
-		//listeStation[44]=unE;
 		stations.add(cinqC);
 		stations.add(cinqD);
-		//listeStation[47]=cinqE;
-		//listeStation[47]=deuxE;
 		stations.add(cinqF);
 		stations.add(cinqG);
-		//listeStation[50]=cinqH;
-		//listeStation[50]=troisE;
 		stations.add(cinqI);
 		stations.add(cinqJ);
-		
+
 		stations.add(sixA);
 		stations.add(sixB);
-		//listeStation[55]=sixC;
-		//listeStation[55]=unG;
 		stations.add(sixD);
 		stations.add(sixE);
-		//listeStation[58]=sixF;
-		//listeStation[58]=deuxG;
 		stations.add(sixG);
-		//listeStation[60]=sixH;
-		//listeStation[60]=troisG;
 		stations.add(sixI);
 		stations.add(sixJ);
-		
+
 		stations.add(septA);
 		stations.add(septB);
-		//listeStation[65]=septC;
-		//listeStation[65]=unI;
 		stations.add(septD);
-		//listeStation[67]=septE;
-		//listeStation[67]=deuxI;
 		stations.add(septF);
-		//listeStation[69]=septG;
-		//listeStation[69]=troisI;
 		stations.add(septH);
 
 		ArrayList<Troncon> troncons = new ArrayList<Troncon>();
 		for(Ligne ligne : lignes){
 			troncons.addAll(ligne.getTroncon());
 		}
-		
-//		Coordonnee a = ask();
-//		for (Station e : laPlusProche(stations.toArray(new Station[1]),a)) {
-//			System.out.println(e.getNom());
-//		}
-		
 		Graph graph = new Graph(lignes, troncons);
 		DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm(graph);
+
+		Station arrivee,departVoulu;
+		int choix = -1;
+		Coordonnee a;
+		Station[] proche;
+		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("temps");
-		dijkstraAlgorithm.execute(unA);
-		LinkedList<Station> path = dijkstraAlgorithm.getPath(cinqD);
-		for(Station station : path){
-			System.out.println(station.getNom());
+		unE.setIncident(true);
+		cinqA.setIncident(true);
+		deuxF.setIncident(true);
+		
+		List<Station> s = clearList(stations);
+		
+		LinkedList<Station> path;
+		while(choix!=1 && choix!=2 && choix!=3){
+			System.out.println("Quel type de parcours voulez-vous?\n1-Le plus rapide\n2-Le moins de changements de ligne\n3-Certains points donnés");
+			choix = sc.nextInt();
+			switch(choix){
+			case 1 :
+				//Gestion de la demande de position de l'utilisateur
+				System.out.println("Veuillez entrer vos coordonnees de départ");
+				a = ask();
+				proche = laPlusProche(stations.toArray(new Station[1]),a);
+				System.out.println("\nVoici les stations les plus proches de vous : ");
+				for (Station e : proche) {
+					System.out.print(e.getNom()+", ");
+				}
+
+				//Demande du depart voulu
+				System.out.println("");
+				System.out.print("\nVeuillez choisir une des stations listées ci-dessus : ");
+				departVoulu = askDepart(proche);
+				if(departVoulu != null){
+					dijkstraAlgorithm.execute(departVoulu);
+				}
+				else{
+					System.out.println("Désolé, votre choix n'est pas reconnu.");
+				}
+
+				//Demande de l'arrivee voulue en termes de coordonnees
+				System.out.println("\nVeuillez entrer vos coordonnees d'arrivee");
+				a = ask();
+				arrivee = larrivee(stations.toArray(new Station[1]),a);
+				System.out.println("\nVoici la station la plus proche de votre arrivee voulue : "+arrivee.getNom());
+				
+				//Recherche d'un chemin a partir du depart voulu par l'utilisateur de manière la plus rapideZ
+				path = dijkstraAlgorithm.getPath(arrivee);
+				System.out.println("\nVoici les stations à suivre pour arriver à la station "+arrivee.getNom()+": ");
+				for(Station station : path){
+					System.out.print(station.getNom()+", ");
+				}
+				break;
+
+			case 2 :
+				//Gestion de la demande de position de l'utilisateur
+				System.out.println("Veuillez entrer vos coordonnees de départ");
+				a = ask();
+				proche = laPlusProche(stations.toArray(new Station[1]),a);
+				System.out.println("\nVoici les stations les plus proches de vous : ");
+				for (Station e : proche) {
+					System.out.print(e.getNom()+", ");
+				}
+
+				//Demande du depart voulu
+				System.out.println("");
+				System.out.print("\nVeuillez choisir une des stations listées ci-dessus : ");
+				departVoulu = askDepart(proche);
+				if(departVoulu != null){
+					dijkstraAlgorithm.execute(departVoulu);
+				}
+				else{
+					System.out.println("Désolé, votre choix n'est pas reconnu.");
+				}
+
+				//Demande de l'arrivee voulue en termes de coordonnees
+				System.out.println("\nVeuillez entrer vos coordonnees d'arrivee");
+				a = ask();
+				arrivee = larrivee(stations.toArray(new Station[1]),a);
+				System.out.println("\nVoici la station la plus proche de votre arrivee voulue : "+arrivee.getNom());
+				
+				System.out.println("\nDésolé, cette fonction n'est pas encore implémentée, un parcours en rapidité sera calculé.");
+				//Recherche d'un chemin a partir du depart voulu par l'utilisateur de manière la plus rapideZ
+				path = dijkstraAlgorithm.getPath(arrivee);
+				System.out.println("\nVoici les stations à suivre pour arriver à la station "+arrivee.getNom()+": ");
+				for(Station station : path){
+					System.out.print(station.getNom()+", ");
+				}
+				break;
+
+			case 3 :
+				//Recherche d'un chemin avec la station de depart et d'arrivee fixees ainsi que des stations de passage determinees
+				List<Station> stationsParcours = new LinkedList<Station>();
+				stationsParcours.add(unC);
+				stationsParcours.add(quatreE);
+				stationsParcours.add(cinqG);
+				stationsParcours.add(troisD);
+
+				System.out.println("\nParcours avec passage par certaines stations déterminées (UnC,QuatreE,CinqG,TroisD):");
+				path = dijkstraAlgorithm.getPath(stationsParcours);
+				for(Station station : path){
+					System.out.print(station.getNom()+", ");
+				}
+				break;
+			}
 		}
-		
-		List<Station> stationsParcours = new LinkedList<Station>();
-		stationsParcours.add(unC);
-		stationsParcours.add(quatreE);
-		stationsParcours.add(cinqG);
-		stationsParcours.add(troisD);
-		
-		
-		System.out.println("PLUS +++");
-		path = dijkstraAlgorithm.getPath(stationsParcours);
-		for(Station station : path){
-			System.out.println(station.getNom());
-		}
-		
+
+
 	}
 }
 

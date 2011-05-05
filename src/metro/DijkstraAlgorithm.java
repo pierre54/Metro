@@ -1,13 +1,7 @@
 package metro;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+
 
 import javax.swing.text.html.HTMLDocument.Iterator;
 
@@ -43,21 +37,17 @@ public class DijkstraAlgorithm {
 	private void findMinimalDistances(Station node) {
 		List<Station> adjacentNodes = getNeighbors(node);
 		for (Station target : adjacentNodes) {
-			if (getShortestDistance(target) > getShortestDistance(node)
-					+ getCout(node, target)) {
-				cout.put(target, getShortestDistance(node)
-						+ getCout(node, target));
+			if (getShortestDistance(target) > getShortestDistance(node)+ getCout(node, target)) {
+				cout.put(target, getShortestDistance(node)+ getCout(node, target));
 				predecesseurs.put(target, node);
 				unSettledSations.add(target);
 			}
 		}
-
 	}
 
 	private int getCout(Station node, Station target) {
 		for (Troncon troncon : troncons) {
-			if (troncon.getDepart().equals(node)
-					&& troncon.getArrive().equals(target)) {
+			if (troncon.getDepart().equals(node)&& troncon.getArrive().equals(target)) {
 				return troncon.getDuree() + troncon.getDepart().getTpsArret();
 			}
 		}
@@ -67,8 +57,7 @@ public class DijkstraAlgorithm {
 	private List<Station> getNeighbors(Station node) {
 		List<Station> neighbors = new ArrayList<Station>();
 		for (Troncon troncon : troncons) {
-			if (troncon.getDepart().equals(node)
-					&& !isSettled(troncon.getArrive())) {
+			if (troncon.getDepart().equals(node) && !isSettled(troncon.getArrive())) {
 				neighbors.add(troncon.getArrive());
 			}
 		}
@@ -119,6 +108,7 @@ public class DijkstraAlgorithm {
 		}
 		// Put it into the correct order
 		Collections.reverse(path);
+		
 		return path;
 	}
 	
@@ -146,5 +136,5 @@ public class DijkstraAlgorithm {
 		}
 		return ret;
 	}
-
+	
 }
