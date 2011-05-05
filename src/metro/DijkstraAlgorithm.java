@@ -2,9 +2,6 @@ package metro;
 
 import java.util.*;
 
-
-import javax.swing.text.html.HTMLDocument.Iterator;
-
 public class DijkstraAlgorithm {
 
 	private final Graph graph;
@@ -13,17 +10,19 @@ public class DijkstraAlgorithm {
 	private Set<Station> unSettledSations;
 	private Map<Station, Station> predecesseurs;
 	private Map<Station, Integer> cout;
-
+	
+	/**Constructeur*/
 	public DijkstraAlgorithm(Graph graph) {
 		this.graph = graph;
 		this.troncons = new ArrayList<Troncon>(graph.getTroncons());
-	}
-
-	public void execute(Station source) {
 		settledStations = new HashSet<Station>();
 		unSettledSations = new HashSet<Station>();
 		cout = new HashMap<Station, Integer>();
 		predecesseurs = new HashMap<Station, Station>();
+	}
+
+	/**Placement du depart de l'utilisateur*/
+	public void execute(Station source) {
 		cout.put(source, 0);
 		unSettledSations.add(source);
 		while (unSettledSations.size() > 0) {
@@ -45,6 +44,7 @@ public class DijkstraAlgorithm {
 		}
 	}
 
+	/**Methode getCout qui renvoie le cout necessaire pour passer d'un noeud depart a un noeud cible*/
 	private int getCout(Station node, Station target) {
 		for (Troncon troncon : troncons) {
 			if (troncon.getDepart().equals(node)&& troncon.getArrive().equals(target)) {
@@ -54,6 +54,7 @@ public class DijkstraAlgorithm {
 		throw new RuntimeException("Should not happen");
 	}
 
+	/***/
 	private List<Station> getNeighbors(Station node) {
 		List<Station> neighbors = new ArrayList<Station>();
 		for (Troncon troncon : troncons) {
@@ -87,14 +88,11 @@ public class DijkstraAlgorithm {
 		}
 	}
 
-	/*
-	 * This method returns the path from the source to the selected target and
-	 * NULL if no path exists
-	 */
+	/**Methode getPath qui renvoie le chemin vers le cible depuis la source, ou renvoie null sinon*/
 	public LinkedList<Station> getPath(Station target) {
 		LinkedList<Station> path = new LinkedList<Station>();
 		Station step = target;
-		// Check if a path exists
+		//On regarde si un chemin existe deja
 		if(predecesseurs==null){
 			predecesseurs = new HashMap<Station, Station>();
 		}
@@ -106,17 +104,18 @@ public class DijkstraAlgorithm {
 			step = predecesseurs.get(step);
 			path.add(step);
 		}
-		// Put it into the correct order
+		
 		Collections.reverse(path);
 		
 		return path;
 	}
 	
+	/**Methode getPath qui renvoie le chemin entre le premier element le la liste et le dernier en passant par tous les autres elements.*/
 	public LinkedList<Station> getPath(List<Station> stations){
 		// iterator sur station
 		java.util.Iterator<Station> iterator = stations.iterator();
 		
-		// les deux premiere station
+		// les deux premieres stations
 		Station station1 = iterator.next();
 		Station station2 = iterator.next();
 		
@@ -136,5 +135,4 @@ public class DijkstraAlgorithm {
 		}
 		return ret;
 	}
-	
 }

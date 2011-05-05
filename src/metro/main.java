@@ -27,55 +27,23 @@ public class Main {
 
 		return null;
 	}
-
+	
 	//Methode qui renvoie un tableau des stations les plus proches de l'utilisateur
-	public static Station[] laPlusProche(Station[] station, Coordonnee c) {
-		int i = 0; 
-		for (int j = 0; j <station.length ; j++) {
-			if  (Math.sqrt((Math.pow((station[j].getX()-c.getX()),2)+Math.pow(station[j].getY()-c.getY(),2))) <= 50) {
-				i++;
+	public static Station laPlusProche(Station[] station, Coordonnee c) {
+		int distance =(int)(Math.sqrt(Math.pow((station[0].getX()-c.getX()),2)+Math.pow(station[0].getY()-c.getY(),2)));
+		Station ret = station[0];
+		
+		for (int j = 1; j <station.length ; j++) {
+			if  (Math.sqrt((Math.pow((station[j].getX()-c.getX()),2)+Math.pow(station[j].getY()-c.getY(),2))) < distance && !station[j].isIncident()) {
+				distance = (int)(Math.sqrt(Math.pow((station[j].getX()-c.getX()),2)+Math.pow(station[j].getY()-c.getY(),2)));
+				ret = station[j];
 			}
 		}
 
-		Station[] l = new Station[i];
-		i=0;
-
-		for (int j = 0; j <station.length ; j++) {
-			if  (Math.sqrt((Math.pow((station[j].getX()-c.getX()),2)+Math.pow(station[j].getY()-c.getY(),2))) <= 50) {
-				l[i] = station[j];
-				i++;
-			}
-		}
-		return l;
-	}
-
-	//Methode qui calcule la station la plus proche de l'arrivee voulue par l'utilisateur
-	public static Station larrivee(Station[] station, Coordonnee c) {
-		int i = 0; 
-		for (int j = 0; j <station.length ; j++) {
-			if  (Math.sqrt((Math.pow((station[j].getX()-c.getX()),2)+Math.pow(station[j].getY()-c.getY(),2))) <= 50) {
-				i++;
-			}
-		}
-
-		Station[] l = new Station[i];
-		i=0;
-
-		for (int j = 0; j <station.length ; j++) {
-			if  (Math.sqrt((Math.pow((station[j].getX()-c.getX()),2)+Math.pow(station[j].getY()-c.getY(),2))) <= 50) {
-				l[i] = station[j];
-				i++;
-			}
-		}
-		if(station.length>0){
-			return l[0];
-		}
-
-		return null;
+		return ret;
 	}
 
 	public static List<Station> clearList(List<Station> stations){
-		//java.util.Iterator<Station> iterator = stations.iterator();
 		int i=0;
 		while(i<stations.size()){
 			Station s = stations.get(i);
@@ -649,29 +617,32 @@ public class Main {
 		stations.add(septD);
 		stations.add(septF);
 		stations.add(septH);
-
+		
 		ArrayList<Troncon> troncons = new ArrayList<Troncon>();
 		for(Ligne ligne : lignes){
 			troncons.addAll(ligne.getTroncon());
 		}
+		int i=0;
+		int m = 0;
 		Graph graph = new Graph(lignes, troncons);
 		DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm(graph);
-
-		Station arrivee,departVoulu;
+		
+		while ( i < troncons.size()) {
+			System.out.println(troncons.get(i).getNum());
+			i++;
+		}
+		
+		Station arrivee;
 		int choix = -1;
 		Coordonnee a;
-		Station[] proche;
+		Station proche;
 		Scanner sc = new Scanner(System.in);
 		
-		unE.setIncident(true);
-		cinqA.setIncident(true);
-		deuxF.setIncident(true);
-		
-		List<Station> s = clearList(stations);
-		
 		LinkedList<Station> path;
-		while(choix!=1 && choix!=2 && choix!=3){
-			System.out.println("Quel type de parcours voulez-vous?\n1-Le plus rapide\n2-Le moins de changements de ligne\n3-Certains points donnés");
+		
+		/**gestion d'une invite de commande*/
+		while(choix!=1 && choix!=2 && choix!=3 && choix!=4){
+			System.out.println("Quel type de parcours voulez-vous?\n1-Le plus rapide\n2-Le moins de changements de ligne\n3-Certains points donnés\n4-Mise à jour d'incidents");
 			choix = sc.nextInt();
 			switch(choix){
 			case 1 :
@@ -679,27 +650,14 @@ public class Main {
 				System.out.println("Veuillez entrer vos coordonnees de départ");
 				a = ask();
 				proche = laPlusProche(stations.toArray(new Station[1]),a);
-				System.out.println("\nVoici les stations les plus proches de vous : ");
-				for (Station e : proche) {
-					System.out.print(e.getNom()+", ");
-				}
-
-				//Demande du depart voulu
-				System.out.println("");
-				System.out.print("\nVeuillez choisir une des stations listées ci-dessus : ");
-				departVoulu = askDepart(proche);
-				if(departVoulu != null){
-					dijkstraAlgorithm.execute(departVoulu);
-				}
-				else{
-					System.out.println("Désolé, votre choix n'est pas reconnu.");
-				}
+				System.out.println("\nVeuillez vous rendre à la station : "+proche.getNom());
+				dijkstraAlgorithm.execute(proche);
 
 				//Demande de l'arrivee voulue en termes de coordonnees
 				System.out.println("\nVeuillez entrer vos coordonnees d'arrivee");
 				a = ask();
-				arrivee = larrivee(stations.toArray(new Station[1]),a);
-				System.out.println("\nVoici la station la plus proche de votre arrivee voulue : "+arrivee.getNom());
+				arrivee = laPlusProche(stations.toArray(new Station[1]),a);
+				System.out.println("\nVotre arrivee se fera a l'arrêt : "+arrivee.getNom());
 				
 				//Recherche d'un chemin a partir du depart voulu par l'utilisateur de manière la plus rapideZ
 				path = dijkstraAlgorithm.getPath(arrivee);
@@ -714,26 +672,13 @@ public class Main {
 				System.out.println("Veuillez entrer vos coordonnees de départ");
 				a = ask();
 				proche = laPlusProche(stations.toArray(new Station[1]),a);
-				System.out.println("\nVoici les stations les plus proches de vous : ");
-				for (Station e : proche) {
-					System.out.print(e.getNom()+", ");
-				}
-
-				//Demande du depart voulu
-				System.out.println("");
-				System.out.print("\nVeuillez choisir une des stations listées ci-dessus : ");
-				departVoulu = askDepart(proche);
-				if(departVoulu != null){
-					dijkstraAlgorithm.execute(departVoulu);
-				}
-				else{
-					System.out.println("Désolé, votre choix n'est pas reconnu.");
-				}
+				System.out.println("\nVeuillez vous rendre à la station : "+proche.getNom());
+				dijkstraAlgorithm.execute(proche);
 
 				//Demande de l'arrivee voulue en termes de coordonnees
 				System.out.println("\nVeuillez entrer vos coordonnees d'arrivee");
 				a = ask();
-				arrivee = larrivee(stations.toArray(new Station[1]),a);
+				arrivee = laPlusProche(stations.toArray(new Station[1]),a);
 				System.out.println("\nVoici la station la plus proche de votre arrivee voulue : "+arrivee.getNom());
 				
 				System.out.println("\nDésolé, cette fonction n'est pas encore implémentée, un parcours en rapidité sera calculé.");
@@ -759,10 +704,59 @@ public class Main {
 					System.out.print(station.getNom()+", ");
 				}
 				break;
+				
+			case 4 :
+				System.out.println("Mise à jour des Stations UnE, CinqA, DeuxF, TroisG, et SeptF");
+				unH.setIncident(true);
+				sixE.setIncident(true);
+				
+				
+				while(m<troncons.size()){
+					System.out.println(m);
+					if(troncons.get(m).isIncident() || troncons.get(m).isIncidenttroncon()){
+						troncons.remove(m);
+					}
+					else{
+						m++;
+					}
+				}
+			
+				graph = new Graph(lignes, troncons);
+				dijkstraAlgorithm = new DijkstraAlgorithm(graph);
+				
+				//Gestion de la demande de position de l'utilisateur
+				System.out.println("Veuillez entrer vos coordonnees de départ");
+				a = ask();
+				proche = laPlusProche(stations.toArray(new Station[1]),a);
+				System.out.println("\nVeuillez vous rendre à la station : "+proche.getNom());
+				dijkstraAlgorithm.execute(proche);
+
+
+				//Demande de l'arrivee voulue en termes de coordonnees
+				System.out.println("\nVeuillez entrer vos coordonnees d'arrivee");
+				a = ask();
+				arrivee = laPlusProche(stations.toArray(new Station[1]),a);
+				System.out.println("\nVoici la station la plus proche de votre arrivee voulue : "+arrivee.getNom());
+				
+				//Recherche d'un chemin a partir du depart voulu par l'utilisateur de manière la plus rapideZ
+				path = dijkstraAlgorithm.getPath(arrivee);
+				System.out.println("\nVoici les stations à suivre pour arriver à la station "+arrivee.getNom()+": ");
+				if(path==null){
+					System.out.print("Itinéraire impossible, un incident a eu lieu sur la ligne.");
+				}
+				else{
+					for(Station station : path){
+						if(station!=null){
+						System.out.print(station.getNom()+", ");
+						}
+					}
+				}
+				break;
+			
+			default :
+				break;
 			}
 		}
-
-
 	}
 }
 

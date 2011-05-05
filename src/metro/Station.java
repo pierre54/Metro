@@ -29,6 +29,10 @@ public class Station {
 		return tpsArret;
 	}
 
+	public boolean getIsIncident() {
+		return this.incident;
+	}
+	
 	public void setTpsArret(int tpsArret) {
 		this.tpsArret = tpsArret;
 	}

@@ -7,7 +7,7 @@ public class Troncon{
 	private Station depart;
 	private Station arrive; 
 	private int duree;
-	private boolean incident; 
+	private boolean incident;
 	
 	public Troncon(int num, Station depart, Station arrive, int duree) {
 		this.num = num;
@@ -50,10 +50,11 @@ public class Troncon{
 	}
 
 	public boolean isIncident() {
-		return incident;
+		return (depart.isIncident() || arrive.isIncident());
 	}
 
-	public void setIncident(boolean incident) {
-		this.incident = incident;
+	public boolean isIncidenttroncon() {
+		return this.isIncident();
 	}
+
 }
