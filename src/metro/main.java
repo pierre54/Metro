@@ -626,12 +626,7 @@ public class Main {
 		int m = 0;
 		Graph graph = new Graph(lignes, troncons);
 		DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm(graph);
-		
-		while ( i < troncons.size()) {
-			System.out.println(troncons.get(i).getNum());
-			i++;
-		}
-		
+	
 		Station arrivee;
 		int choix = -1;
 		Coordonnee a;
