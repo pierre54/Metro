@@ -7,16 +7,16 @@ public class Station {
 	private int tpsArret; 
 	private boolean incident;
 	private Coordonnee c;
-	
-	
+
+
 	public Station (String nom, int tpsArret, Coordonnee c) {
 		this.nom = nom;
 		this.tpsArret = tpsArret;
 		this.incident = false;
 		this.c = c;
-		
+
 	}
-	
+
 	public String getNom() {
 		return nom;
 	}
@@ -32,7 +32,7 @@ public class Station {
 	public boolean getIsIncident() {
 		return this.incident;
 	}
-	
+
 	public void setTpsArret(int tpsArret) {
 		this.tpsArret = tpsArret;
 	}
@@ -58,7 +58,8 @@ public class Station {
 	public Station laPlusProche(Coordonnee c) {
 		return null;
 	}
-	
+
+	/**Methode equals qui va comparer deux stations et voir si elles ont le même nom et dans ce cas renvoie true*/
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -71,7 +72,8 @@ public class Station {
 		if (nom == null) {
 			if (other.nom != null)
 				return false;
-		} else if (!nom.equals(other.nom))
+		} 
+		else if (!nom.equals(other.nom))
 			return false;
 		return true;
 	}

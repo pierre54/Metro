@@ -45,7 +45,7 @@ public class DijkstraAlgorithm {
 	}
 
 	/**Methode getCout qui renvoie le cout necessaire pour passer d'un noeud depart a un noeud cible*/
-	private int getCout(Station node, Station target) {
+	public int getCout(Station node, Station target) {
 		for (Troncon troncon : troncons) {
 			if (troncon.getDepart().equals(node)&& troncon.getArrive().equals(target)) {
 				return troncon.getDuree() + troncon.getDepart().getTpsArret();
@@ -54,8 +54,8 @@ public class DijkstraAlgorithm {
 		throw new RuntimeException("Should not happen");
 	}
 
-	/***/
-	private List<Station> getNeighbors(Station node) {
+	/**Renvoie la liste des noeuds voisins au noeud courant*/
+	public List<Station> getNeighbors(Station node) {
 		List<Station> neighbors = new ArrayList<Station>();
 		for (Troncon troncon : troncons) {
 			if (troncon.getDepart().equals(node) && !isSettled(troncon.getArrive())) {
@@ -65,25 +65,29 @@ public class DijkstraAlgorithm {
 		return neighbors;
 	}
 
-	private Station getMinimum(Set<Station> vertexes) {
-		Station minimum = (Station) vertexes.iterator().next();
-		for (Station vertex : vertexes) {
-			if (getShortestDistance(vertex) < getShortestDistance(minimum)) {
-				minimum = vertex;
+	/**Renvoie la station à la distance minimale de la premiere station de la liste*/
+	public Station getMinimum(Set<Station> stations) {
+		Station minimum = (Station) stations.iterator().next();
+		for (Station s : stations) {
+			if (getShortestDistance(s) < getShortestDistance(minimum)) {
+				minimum = s;
 			}
 		}
 		return minimum;
 	}
 
-	private boolean isSettled(Station vertex) {
-		return settledStations.contains(vertex);
+	
+	public boolean isSettled(Station station) {
+		return settledStations.contains(station);
 	}
 
-	private int getShortestDistance(Station destination) {
+	/**Recupère le cout d'une destination*/
+	public int getShortestDistance(Station destination) {
 		Integer d = cout.get(destination);
 		if (d == null) {
 			return Integer.MAX_VALUE;
-		} else {
+		} 
+		else {
 			return d;
 		}
 	}

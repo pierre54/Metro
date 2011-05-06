@@ -49,6 +49,10 @@ public class Troncon{
 		this.duree = duree;
 	}
 
+	public void setIncident(boolean incident){
+		this.incident=incident;
+	}
+	
 	public boolean isIncident() {
 		return (depart.isIncident() || arrive.isIncident());
 	}

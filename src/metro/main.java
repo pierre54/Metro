@@ -12,20 +12,6 @@ public class Main {
 		int longitude = sc.nextInt();
 		Coordonnee c = new Coordonnee(latitude,longitude);
 		return c;
-
-	}
-
-	public static Station askDepart(Station[] proche){
-		Scanner sc = new Scanner(System.in);
-		String nomStation = sc.next();
-
-		for(Station s : proche){
-			if (s.getNom().matches(nomStation)){
-				return s;
-			}	
-		}
-
-		return null;
 	}
 	
 	//Methode qui renvoie un tableau des stations les plus proches de l'utilisateur
@@ -42,19 +28,20 @@ public class Main {
 
 		return ret;
 	}
-
-	public static List<Station> clearList(List<Station> stations){
-		int i=0;
-		while(i<stations.size()){
-			Station s = stations.get(i);
-			
-			if(s.isIncident()){
-				stations.remove(i);
-				System.out.println("La station "+s.getNom()+" a un incident.");
+	
+	//Methode clearTroncons qui va supprimer les troncons où il y a un incident de la liste des troncons
+	public static ArrayList<Troncon> clearTroncons(ArrayList<Troncon> troncons){
+		int m=0;
+		while(m<troncons.size()){
+			if(troncons.get(m).isIncident() || troncons.get(m).isIncidenttroncon()){
+				troncons.remove(m);
+			}
+			else{
+				m++;
 			}
 		}
 		
-		return stations;
+		return troncons;
 	}
 	
 	public static void main(String[] args) {
@@ -622,8 +609,7 @@ public class Main {
 		for(Ligne ligne : lignes){
 			troncons.addAll(ligne.getTroncon());
 		}
-		int i=0;
-		int m = 0;
+		
 		Graph graph = new Graph(lignes, troncons);
 		DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm(graph);
 	
@@ -705,16 +691,7 @@ public class Main {
 				unH.setIncident(true);
 				sixE.setIncident(true);
 				
-				
-				while(m<troncons.size()){
-					System.out.println(m);
-					if(troncons.get(m).isIncident() || troncons.get(m).isIncidenttroncon()){
-						troncons.remove(m);
-					}
-					else{
-						m++;
-					}
-				}
+				troncons = clearTroncons(troncons);
 			
 				graph = new Graph(lignes, troncons);
 				dijkstraAlgorithm = new DijkstraAlgorithm(graph);
